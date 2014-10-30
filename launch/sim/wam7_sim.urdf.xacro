@@ -15,6 +15,7 @@
 
   <!-- Includea all the WAM stuff -->
   <xacro:include filename="$(find barrett_model)/models/wam_top.urdf.xacro"/>
+  <xacro:include filename="$(find lcsr_barrett)/models/cutter_ee.urdf.xacro"/>
 
   <!-- Root link is in the world frame-->
   <link name="world"/>
@@ -26,6 +27,9 @@
   <xacro:if value="$(arg ball)">
     <xacro:bball prefix="$(arg prefix)/ball" parent_link="$(arg prefix)/wrist_palm_link" xyz="0.0 0.0 0.06" rpy="0 0 0"/>
   </xacro:if>
+  <xacro:if value="$(arg cutter)">
+    <xacro:cutter prefix="$(arg prefix)/cutter" parent_link="$(arg prefix)/wrist_palm_link" xyz="0.0 0.0 0.06" rpy="0 0 0"/>
+  </xacro:if>
+
 
 </robot>
-
