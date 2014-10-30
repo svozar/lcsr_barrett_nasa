@@ -6,11 +6,11 @@
   <xacro:macro name="cutter" params="parent_link prefix xyz rpy">
     <joint name="${prefix}/wam_to_cutter_mount_joint" type="fixed">
       <parent link="${parent_link}"/>
-      <child link="${prefix}/cutter_mount_link"/>
+      <child link="${prefix}/cutter_link"/>
       <!--<origin xyz="${xyz}" rpy="${rpy}"/>-->
       <origin xyz="0 0 0.0778 " rpy="0 0 0"/>
     </joint>
-    <link name="${prefix}/cutter_mount_link">
+    <link name="${prefix}/cutter_link">
       <inertial>
         <mass value="1.0" />
         <inertia
@@ -29,7 +29,7 @@
       </visual>
     </link>
     <joint name="${prefix}/cutter_mount_to_blade_holder_joint" type="fixed">
-      <parent link="${prefix}/cutter_mount_link"/>
+      <parent link="${prefix}/cutter_link"/>
       <child link="${prefix}/blade_holder_link"/>
       <!--<origin xyz="${xyz}" rpy="${rpy}"/>-->
       <origin xyz="0 0 0.025" rpy="0 0 0"/>

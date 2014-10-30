@@ -27,6 +27,9 @@
     <rosparam if="$(arg ee_hand)" subst_value="true">
       tip_link: $(arg tf_prefix)/wrist_palm_link
     </rosparam>
+    <rosparam if="$(arg ee_cutter)" subst_value="true">
+      tip_link: $(arg tf_prefix)/cutter/cutter_link
+    </rosparam>
   </group>
 
   <group ns="$(arg oro_prefix)pid">
