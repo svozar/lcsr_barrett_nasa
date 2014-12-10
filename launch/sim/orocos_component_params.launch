@@ -28,7 +28,7 @@
       tip_link: $(arg tf_prefix)/wrist_palm_link
     </rosparam>
     <rosparam if="$(arg ee_cutter)" subst_value="true">
-      tip_link: $(arg tf_prefix)/cutter/cutter_link
+      tip_link: $(arg tf_prefix)/cutter/blade_link
     </rosparam>
   </group>
 
@@ -143,7 +143,7 @@
       tip_link: $(arg tf_prefix)/ball/bball_center_link
     </rosparam>
     <rosparam if="$(arg ee_cutter)" subst_value="true">
-      tip_link: $(arg tf_prefix)/cutter/cutter_link
+      tip_link: $(arg tf_prefix)/cutter/blade_link
     </rosparam>
   </group>
 
@@ -169,7 +169,7 @@
       tip_link: $(arg tf_prefix)/ball/bball_center_link
     </rosparam>
     <rosparam if="$(arg ee_cutter)" subst_value="true">
-      tip_link: $(arg tf_prefix)/cutter/cutter_link
+      tip_link: $(arg tf_prefix)/cutter/blade_link
     </rosparam>
   </group>
 
@@ -193,7 +193,7 @@
       tip_link: $(arg tf_prefix)/ball/bball_center_link
     </rosparam>
     <rosparam if="$(arg ee_cutter)" subst_value="true">
-      tip_link: $(arg tf_prefix)/cutter/cutter_link
+      tip_link: $(arg tf_prefix)/cutter/blade_link
     </rosparam>
   </group>
 
@@ -228,7 +228,7 @@
       tip_link: $(arg tf_prefix)/ball/bball_center_link
     </rosparam>
     <rosparam if="$(arg ee_cutter)" subst_value="true">
-      tip_link: $(arg tf_prefix)/cutter/cutter_link
+      tip_link: $(arg tf_prefix)/cutter/blade_link
     </rosparam>
 
     <node pkg="tf" type="static_transform_publisher" name="$(anon stp)"

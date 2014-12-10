@@ -2,33 +2,266 @@
 
   <xacro:include filename="$(find barrett_model)/models/common.urdf.xacro"/>
 
-  <!-- High-leveel hand macro -->
+  <!-- Components of the Cutter -->
   <xacro:macro name="cutter" params="parent_link prefix xyz rpy">
     <joint name="${prefix}/wam_to_cutter_mount_joint" type="fixed">
       <parent link="${parent_link}"/>
-      <child link="${prefix}/cutter_link"/>
-      <!--<origin xyz="${xyz}" rpy="${rpy}"/>-->
-      <origin xyz="0 0 0.0778 " rpy="0 0 0"/>
+      <child link="${prefix}/cutter_mount_link"/>
+      <origin xyz="0 0 0.06 " rpy="${-PI/2} 0 ${PI/4}"/>
     </joint>
-    <link name="${prefix}/cutter_link">
+    <link
+      name="${prefix}/cutter_mount_link">
       <inertial>
-        <origin xyz="0 0.03 0"/>
-        <mass value="0.77" />
+        <origin
+          xyz="5.42758435816031E-05 -9.37809321333387E-05 0.0181774714408176"
+          rpy="0 0 0" />
+        <mass
+          value="0.259037794172668" />
         <inertia
-          ixx="0.000001" ixy="0"  ixz="0"
-          iyy="0.000001" iyz="0"
-          izz="0.000001" />
+          ixx="0.00014219927644502"
+          ixy="-6.04266394919491E-07"
+          ixz="-9.94297973799942E-08"
+          iyy="0.000143829422266357"
+          iyz="1.70474515646103E-07"
+          izz="0.000253691853649476" />
       </inertial>
       <visual>
-        <material name="WAMGrey">
-          <color rgba="0.9 0.9 0.9 0.0"/>
-        </material>
-        <origin xyz="0 0.0012 0" rpy="${-PI/2} 0 ${PI/4}"/>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
         <geometry>
-            <mesh filename="package://lcsr_barrett/models/meshes/cutter_mount.stl"/>
+          <mesh
+            filename="package://lcsr_barrett/models/meshes/cutter_mount/cutter_mount_link.STL" />
         </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.796078431372549 0.823529411764706 0.937254901960784 1" />
+        </material>
       </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://lcsr_barrett/models/meshes/cutter_mount/cutter_mount_link.STL" />
+        </geometry>
+      </collision>
     </link>
+    <link
+      name="${prefix}/camera_mount_link">
+      <inertial>
+        <origin
+          xyz="0.0436635879262817 -0.039312611056037 0.030072808531896"
+          rpy="0 0 0" />
+        <mass
+          value="0.0293075338865045" />
+        <inertia
+          ixx="1.95762568979852E-05"
+          ixy="-5.61575775499994E-07"
+          ixz="-1.02713604217024E-06"
+          iyy="1.6917417439888E-05"
+          iyz="-1.89664095902015E-06"
+          izz="7.56191011655236E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://lcsr_barrett/models/meshes/cutter_mount/camera_mount_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://lcsr_barrett/models/meshes/cutter_mount/camera_mount_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+    <joint
+      name="${prefix}/camera_mount_joint"
+      type="fixed">
+      <origin
+        xyz="0 -0.02143 0"
+        rpy="1.5707963267949 0 0" />
+      <parent
+        link="${prefix}/cutter_mount_link" />
+      <child
+        link="${prefix}/camera_mount_link" />
+      <axis
+        xyz="0 0 0" />
+    </joint>
+    <link
+      name="${prefix}/force_sensor_link">
+      <inertial>
+        <origin
+          xyz="-6.59487510608674E-05 0.011431537291602 2.37565747072248E-13"
+          rpy="0 0 0" />
+        <mass
+          value="0.0849566972958123" />
+        <inertia
+          ixx="2.87730082332126E-05"
+          ixy="-1.618915462808E-08"
+          ixz="5.14459859579369E-16"
+          iyy="4.83922363844613E-05"
+          iyz="6.82635763043705E-16"
+          izz="2.87335392740936E-05" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://lcsr_barrett/models/meshes/cutter_mount/force_sensor_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://lcsr_barrett/models/meshes/cutter_mount/force_sensor_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+    <joint
+      name="${prefix}/force_sensor_joint"
+      type="fixed">
+      <origin
+        xyz="0 -0.03438 0"
+        rpy="3.14159265358979 0.785398163397482 -6.1230317691123E-17" />
+      <parent
+        link="${prefix}/cutter_mount_link" />
+      <child
+        link="${prefix}/force_sensor_link" />
+      <axis
+        xyz="0 0 0" />
+    </joint>
+    <link
+      name="${prefix}/blade_post_link">
+      <inertial>
+        <origin
+          xyz="-1.0685207565214E-16 -0.00723826351043813 1.86805048920411E-16"
+          rpy="0 0 0" />
+        <mass
+          value="0.0256810679170833" />
+        <inertia
+          ixx="9.39627150203593E-06"
+          ixy="6.58817438714616E-10"
+          ixz="7.34408788873588E-08"
+          iyy="6.73065624727511E-06"
+          iyz="-6.58817438716305E-10"
+          izz="9.39627150203592E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://lcsr_barrett/models/meshes/cutter_mount/blade_post_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://lcsr_barrett/models/meshes/cutter_mount/blade_post_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+    <joint
+      name="${prefix}/blade_post_joint"
+      type="fixed">
+      <origin
+        xyz="0 0.0311 0"
+        rpy="-3.14159265358979 0.785398163397482 6.1230317691123E-17" />
+      <parent
+        link="${prefix}/force_sensor_link" />
+      <child
+        link="${prefix}/blade_post_link" />
+      <axis
+        xyz="0 0 0" />
+    </joint>
+    <link
+      name="${prefix}/blade_link">
+      <inertial>
+        <origin
+          xyz="1.05382177026976E-07 1.30254047844299E-05 -0.0089430159579828"
+          rpy="0 0 0" />
+        <mass
+          value="0.00562546911950805" />
+        <inertia
+          ixx="4.94353342038577E-07"
+          ixy="-8.12291325104656E-13"
+          ixz="3.48363287865172E-12"
+          iyy="6.03019888565933E-07"
+          iyz="2.16074117665043E-09"
+          izz="2.49643349102516E-07" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://lcsr_barrett/models/meshes/cutter_mount/blade_link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://lcsr_barrett/models/meshes/cutter_mount/blade_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+    <joint
+      name="${prefix}/blade_joint"
+      type="fixed">
+      <origin
+        xyz="0 -0.0656 0"
+        rpy="-1.5707963267949 0.785398163397477 -3.14159265358979" />
+      <parent
+        link="${prefix}/blade_post_link" />
+      <child
+        link="${prefix}/blade_link" />
+      <axis
+        xyz="0 0 0" />
+    </joint>
+
   </xacro:macro>
 
 </robot>
